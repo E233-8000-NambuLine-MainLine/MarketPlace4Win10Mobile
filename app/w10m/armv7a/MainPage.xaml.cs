@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Net.Http;
+using Windows.Data.Json; // 【追加】JSONパースに必要な魔法のインクルード！
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
@@ -26,25 +27,35 @@ namespace MarketPlace4Win10Mobile
             FetchGitHubData();
         }
 
-        // あなたが書いてくれた「非同期で通信が終わったら…」のロジックはここに格納！
+        // GitHub APIからデータをGETしてJSONをパースする関数
         private async void FetchGitHubData()
         {
             try
             {
                 using (var client = new HttpClient())
                 {
+                    // GitHub APIの動作に必須のヘッダーを設定
                     client.DefaultRequestHeaders.UserAgent.ParseAdd("MarketPlaceApp");
 
+                    // 【修正】あなたの本物のリポジトリ情報を返すGitHub APIのURL
                     string url = "https://github.com";
                     
-                    // 1. HTTPリクエストで生データをGET
+                    // 1. HTTPリクエストで生のJSON文字列をGET
                     string jsonResult = await client.GetStringAsync(url);
 
-                    // 2. 【変数の置き換えを実行！】
-                    // プロパティ経由で代入するので、XAMLの画面も全自動でパッ書き換わります！
-                    myApp.AppName = "GitHubからGET成功！";
-                    myApp.Develop.Name = "GT-R50_MA (ハッカーモード)"; 
-                    myApp.App.Desc = "データの中身: " + jsonResult.Substring(0, 100); 
+                    // 2. 【JSON魔法】文字列をオブジェクトにパース（解析）！
+                    JsonObject jsonObject = JsonObject.Parse(jsonResult);
+
+                    // 3. JSONのキーを指定して、必要なデータを直接引っこ抜く！
+                    string repoName = jsonObject.GetNamedString("name");
+                    string repoDesc = jsonObject.GetNamedString("description");
+                    string ownerName = jsonObject.GetNamedObject("owner").GetNamedString("login");
+
+                    // 4. 【変数の置き換えを実行！】
+                    // 代入した瞬間に、XAML側の画面の文字も全自動でパッ書き換わります！
+                    myApp.AppName = repoName;       // 「MarketPlace4Win10Mobile」
+                    myApp.Develop.Name = ownerName; // 「E233-8000-NambuLine」
+                    myApp.App.Desc = repoDesc;       // 「GitHubからレポジトリを登録し…」
                 }
             }
             catch (Exception)
@@ -66,8 +77,6 @@ namespace MarketPlace4Win10Mobile
     // ==========================================
     // 2. データモデル（画面と連動する変数たち）
     // ==========================================
-    
-    // 分裂していたDeveloperクラスを1つに統合！
     public class Developer : INotifyPropertyChanged
     {
         private string _name = "GT-R50_MA";
