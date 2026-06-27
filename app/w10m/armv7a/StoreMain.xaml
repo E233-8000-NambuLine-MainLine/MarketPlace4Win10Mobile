@@ -1,4 +1,4 @@
-<Pivot Title="MARKETPLACE">
+<Pivot Title="Marketplace">
     <!-- ページ1: おすすめアプリ -->
     <PivotItem Header="注目">
         <GridView x:Name="FeaturedAppsGrid">
@@ -9,10 +9,13 @@
     <!-- ページ2: カテゴリ一覧 -->
     <PivotItem Header="カテゴリ">
         <ListView x:Name="CategoriesList">
-            <!-- カテゴリ -->
+        </ListView>
+		</PivotItem>  
+					<!-- カテゴリ -->
 		<PivotItem Header="計算">
-				<ListView x:Namd="Calculator">
+				<ListView x:Name="Calculator">
         </ListView>
     </PivotItem>
 </Pivot>
 <!-- 大江戸コントローラー中毒性エグすぎだろ -->
+<!-- 早くMADOSMA Q601欲しい…！ -->
