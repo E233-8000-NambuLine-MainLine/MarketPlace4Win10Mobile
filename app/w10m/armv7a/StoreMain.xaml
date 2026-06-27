@@ -16,6 +16,10 @@
 				<ListView x:Name="Calculator">
         </ListView>
     </PivotItem>
+		<PivotItem Header="音楽">
+				<ListView x:Name="MusicAndMusicVideos">
+				</ListView>
+		</PivotItem>
 </Pivot>
 <!-- 大江戸コントローラー中毒性エグすぎだろ -->
 <!-- 早くMADOSMA Q601欲しい…！ -->
