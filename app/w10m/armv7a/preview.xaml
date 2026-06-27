@@ -1,2 +1,44 @@
-<Pivot>
+<Pivot Title="App Details">
+    <!-- ページ1: 概要とインストールボタン -->
+    <PivotItem Header="概要">
+        <ScrollViewer>
+            <StackPanel Margin="12" Spacing="24">
+                <!-- アプリ基本情報 -->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- アイコン（これもAPIから取得） -->
+                    <Image Grid.Column="0" x:Name="AppIcon" Width="72" Height="72" Margin="0,0,12,0" Source="ms-appx:///Assets/StoreLogo.png"/>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock x:Name="AppName" Text={Binding AppName} FontSize="28" FontWeight="SemiBold"/>
+                        <TextBlock x:Name="DeveloperName" Text={Binding Develop.Name} FontSize="14" Foreground="Gray"/>
+                    </StackPanel>
+                </Grid>
+
+                <!-- 本家風のド派手なインストールボタン -->
+                <Button Content="インストール" 
+                        HorizontalAlignment="Stretch" 
+                        Background="{ThemeResource SystemControlHighlightAccentBrush}" 
+                        Foreground="White" 
+                        FontSize="20" 
+                        Padding="16,12"/>
+
+                <TextBlock x:Name="Description" Text={Binding App.Desc.} TextWrapping="Wrap" FontSize="16" Opacity="0.8"/>
+            </StackPanel>
+        </ScrollViewer>
+    </PivotItem>
+
+    <!-- ページ2: スクリーンショット（API連動用） -->
+    <PivotItem Header="スクリーンショット">
+        <!-- 横スワイプでスクショをめくるFlipView -->
+        <FlipView x:Name="ScreenshotFlipView">
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding}" Stretch="Uniform" Margin="12"/>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </PivotItem>
 </Pivot>
