@@ -1,0 +1,18 @@
+<Pivot Title="MARKETPLACE">
+    <!-- ページ1: おすすめアプリ -->
+    <PivotItem Header="注目">
+        <GridView x:Name="FeaturedAppsGrid">
+            <!-- ここにタイル状のアプリ一覧が並ぶ -->
+        </GridView>
+    </PivotItem>
+
+    <!-- ページ2: カテゴリ一覧 -->
+    <PivotItem Header="カテゴリ">
+        <ListView x:Name="CategoriesList">
+            <!-- カテゴリ -->
+		<PivotItem Header="計算">
+				<ListView x:Namd="Calculator">
+        </ListView>
+    </PivotItem>
+</Pivot>
+<!-- 大江戸コントローラー中毒性エグすぎだろ -->
