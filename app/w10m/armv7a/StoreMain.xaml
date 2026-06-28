@@ -1,25 +1,30 @@
 <Pivot Title="Marketplace">
-    <!-- ページ1: おすすめアプリ -->
+    <!-- ページ1：おすすめアプリ -->
     <PivotItem Header="注目">
         <GridView x:Name="FeaturedAppsGrid">
             <!-- ここにタイル状のアプリ一覧が並ぶ -->
         </GridView>
     </PivotItem>
 
-    <!-- ページ2: カテゴリ一覧 -->
+    <!-- ページ2：カテゴリ一覧 -->
     <PivotItem Header="カテゴリ">
         <ListView x:Name="CategoriesList">
         </ListView>
-		</PivotItem>  
-					<!-- カテゴリ -->
-		<PivotItem Header="計算">
-				<ListView x:Name="Calculator">
+    </PivotItem>
+
+    <!-- ページ3：計算（カテゴリ） -->
+    <PivotItem Header="計算">
+        <ListView x:Name="Calculator">
         </ListView>
     </PivotItem>
-		<PivotItem Header="音楽">
-				<ListView x:Name="MusicAndMusicVideos">
-				</ListView>
-		</PivotItem>
+
+    <!-- ページ4：音楽 -->
+    <PivotItem Header="音楽">
+        <ListView x:Name="MusicAndMusicVideos">
+        </ListView>
+    </PivotItem>
 </Pivot>
+
+<!-- コメント -->
 <!-- 大江戸コントローラー中毒性エグすぎだろ -->
-<!-- 早くMADOSMA Q601欲しい…！ -->
+<!-- 早くMADOSMA Q601欲しい...! -->
