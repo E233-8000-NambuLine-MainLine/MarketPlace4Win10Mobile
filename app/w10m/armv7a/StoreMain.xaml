@@ -1,30 +1,35 @@
-<Pivot Title="Marketplace">
-    <!-- ページ1：おすすめアプリ -->
+<!-- 
+  本家風にするポイント:
+  - Titleに大きくストア名を出す
+  - 背景をWindows Phone伝統の「漆黒（Darkテーマ）」にする
+-->
+<Pivot Title="Marketplace" 
+       Background="#FF000000" 
+       Foreground="#FFFFFFFF">
+    
+    <!-- 注目タブ：タイル型にアプリを並べる -->
     <PivotItem Header="注目">
+        <!-- 
+          GridViewの列幅を固定（例: 150px）して、
+          画面幅に合わせて方程式のように自動計算して並べる設定
+        -->
         <GridView x:Name="FeaturedAppsGrid">
-            <!-- ここにタイル状のアプリ一覧が並ぶ -->
+            <GridView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="3"/>
+                </ItemsPanelTemplate>
+            </GridView.ItemsPanel>
         </GridView>
     </PivotItem>
 
-    <!-- ページ2：カテゴリ一覧 -->
+    <!-- カテゴリタブ：本家のようなすっきりしたリスト表示 -->
     <PivotItem Header="カテゴリ">
         <ListView x:Name="CategoriesList">
+            <!-- ここに縦並びの文字リストが入る -->
         </ListView>
     </PivotItem>
-
-    <!-- ページ3：計算（カテゴリ） -->
-    <PivotItem Header="計算">
-        <ListView x:Name="Calculator">
-        </ListView>
-    </PivotItem>
-
-    <!-- ページ4：音楽 -->
-    <PivotItem Header="音楽">
-        <ListView x:Name="MusicAndMusicVideos">
-        </ListView>
-    </PivotItem>
+		<PivotItem Header="計算">
+				<ListView x:Name"Calculator">
+				</ListView>
+		</PivotItem>
 </Pivot>
-
-<!-- コメント -->
-<!-- 大江戸コントローラー中毒性エグすぎだろ -->
-<!-- 早くMADOSMA Q601欲しい...! -->
